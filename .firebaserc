@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "farmconnect-9484b"
-  }
+    "default": "farmconnect-9484b",
+    "kethsaathi": "kethsaathi"
+  },
+  "targets": {},
+  "etags": {}
 }

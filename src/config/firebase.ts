@@ -4,13 +4,13 @@ import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAKOdPWiNBgUaxe8ss3NSefFp17-_p3VdA",
-  authDomain: "farmconnect-9484b.firebaseapp.com",
-  projectId: "farmconnect-9484b",
-  storageBucket: "farmconnect-9484b.appspot.com",
-  messagingSenderId: "1067433976000",
-  appId: "1:1067433976000:web:6ca3bd9b40272294df4d25",
-  measurementId: "G-886D6EY590"
+  apiKey: "AIzaSyCn7wimxs86e53-3pl5b8PfyxE0tAYaAAg",
+  authDomain: "kethsaathi.firebaseapp.com",
+  projectId: "kethsaathi",
+  storageBucket: "kethsaathi.firebasestorage.app",
+  messagingSenderId: "260695470856",
+  appId: "1:260695470856:web:bd167325abf7b4f325f2bd",
+  measurementId: "G-X14ZN6EZ5Z"
 };
 
 const app = initializeApp(firebaseConfig);
