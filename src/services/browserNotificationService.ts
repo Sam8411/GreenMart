@@ -1,6 +1,8 @@
 import { AppNotification } from '../types';
 
 class BrowserNotificationService {
+  private static isInitialized = false;
+
   // Request notification permission from the user
   static async requestPermission(): Promise<boolean> {
     if (!('Notification' in window)) {
@@ -45,16 +47,16 @@ class BrowserNotificationService {
 
     try {
       console.log('Showing browser notification:', title);
-      
+
       const notification = new Notification(title, {
         icon: '/favicon.png',
         badge: '/favicon.png',
         requireInteraction: true, // Keep notification until user interacts
         silent: false,
-        vibrate: [200, 100, 200], // Vibration pattern for mobile
+        vibrate: [200, 100, 200],
         timestamp: Date.now(),
         ...options
-      });
+      } as any);
 
       // Auto-close notification after 10 seconds (increased from 5)
       setTimeout(() => {
@@ -164,12 +166,19 @@ class BrowserNotificationService {
 
   // Initialize notification service
   static async initialize(): Promise<void> {
+    if (this.isInitialized) {
+      console.log('Browser notification service already initialized');
+      return;
+    }
+
     console.log('Initializing browser notification service...');
-    
+    this.isInitialized = true;
+
     // Register service worker for better notification support
     if ('serviceWorker' in navigator) {
       try {
-        const registration = await navigator.serviceWorker.register('/sw.js');
+        const swUrl = new URL('/sw.js', window.location.origin).href;
+        const registration = await navigator.serviceWorker.register(swUrl);
         console.log('Service Worker registered:', registration);
       } catch (error) {
         console.error('Service Worker registration failed:', error);
@@ -179,7 +188,7 @@ class BrowserNotificationService {
     // Request notification permission
     const hasPermission = await this.requestPermission();
     console.log('Notification permission granted:', hasPermission);
-    
+
     if (hasPermission) {
       // Test notification to verify it's working
       setTimeout(() => {
@@ -200,7 +209,7 @@ class BrowserNotificationService {
     console.log('Testing browser notification...');
     console.log('Notification permission:', Notification.permission);
     console.log('Notification supported:', 'Notification' in window);
-    
+
     if (this.isSupported()) {
       this.showNotification(
         '🧪 Test Notification',
