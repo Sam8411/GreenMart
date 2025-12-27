@@ -1,0 +1,9 @@
+{
+  "projects": {
+    "default": "farmconnect-9484b",
+    "kethsaathi": "kethsaathi",
+    "GreenMart": "greenmart-6cb76"
+  },
+  "targets": {},
+  "etags": {}
+}
